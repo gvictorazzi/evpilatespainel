@@ -26,7 +26,7 @@
                         <ul class='dropdown-menu'>
                             <li><a href='<?php echo BASE_URL."/parametros";?>'>Empresa</a></li>
                             <li><a href='<?php echo BASE_URL."/permissions";?>'>Controle de Acesso</a></li>
-                            <li><a href='<?php echo BASE_URL."/login/logout";?>'>Sair</a></li>
+                            <li><a href='<?php echo BASE_URL."/usuarios";?>'><img src="<?php echo BASE_URL.'/assets/images/usuarios.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Usuários Sistema</a></li>
                         </ul>
                     </li>
                     <li class='dropdown'>
@@ -35,13 +35,24 @@
                            <span class='caret'></span>
                         </a>
                         <ul class='dropdown-menu'>
-                            <li><a href='<?php echo BASE_URL."/professores";?>'>Professores</a></li>
-                            <li><a href='<?php echo BASE_URL."/Modalidade";?>'>Modalidades</a></li>
-                            <li><a href='<?php echo BASE_URL."/Salas";?>'>Salas/Setores</a></li>
+                            <li><a href='<?php echo BASE_URL."/professores";?>'><img src="<?php echo BASE_URL.'/assets/images/professores.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Professores</a></li>
+                            <li><a href='<?php echo BASE_URL."/Modalidade";?>'><img src="<?php echo BASE_URL.'/assets/images/modalidade.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Modalidades</a></li>
+                            <li><a href='<?php echo BASE_URL."/Eventos";?>'><img src="<?php echo BASE_URL.'/assets/images/eventos.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Eventos</a></li>
+                            <li><a href='<?php echo BASE_URL."/Salas";?>'><img src="<?php echo BASE_URL.'/assets/images/sala.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Salas/Setores</a></li>
                         </ul>
                     </li>
+                    <li><a href='<?php echo BASE_URL."/alunos";?>'>Alunos</a></li>
                     <li><a href='<?php echo BASE_URL."/agendas";?>'>Agendas</a></li>
-                    <li><a href='<?php echo BASE_URL."/Tabelas";?>'>Relatórios</a></li>
+                    <li><a href='<?php echo BASE_URL."/tabelas";?>'>Relatórios</a></li>
+                    <li class='dropdown'>
+                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                            <?php echo 'Tabelas';?>
+                           <span class='caret'></span>
+                        </a>
+                        <ul class='dropdown-menu'>
+                            <li><a href='<?php echo BASE_URL."/precoscursos";?>'>Preços Modalidades</a></li>
+                        </ul>
+                    </li>
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -52,8 +63,8 @@
                            <span class='caret'></span>
                         </a>
                         <ul class='dropdown-menu'>
-                            <li><a href='<?php echo BASE_URL."/perfil" ;?>'>Editar Perfil</a></li>
-                            <li><a href='<?php echo BASE_URL."/sair" ;?>'>Sair</a></li>
+                            <li><a href='<?php echo BASE_URL."/perfil" ;?>'><img src="<?php echo BASE_URL.'/assets/images/perfil.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Editar Perfil</a></li>
+                            <li><a href='<?php echo BASE_URL."/sair" ;?>'><img src="<?php echo BASE_URL.'/assets/images/sair.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Sair</a></li>
                         </ul>
                     </li>
                 </ul>
