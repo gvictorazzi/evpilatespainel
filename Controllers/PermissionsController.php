@@ -232,6 +232,35 @@
         // Alterar Descfrição ou Desativar o Módulo
         // do Sistema
         
+        public function deactivatedGroup($pId) {
+
+            $Data = array(
+                "aviso" =>""
+            );
+            $statusNow = '';
+            
+            $user = new AdminsModels();
+            $userInfo = $user->getUserLogged();
+            $company = new EmpresaModels();
+            $company = $company->getEmpresa();
+            $Data['company_name'] = $company['emp_nome'];
+            $Data['user_name'] = $userInfo['email'];
+            
+            if ( $user->hasPermission("permissions")) {
+                
+                    $addPname = new PermissionsModels();
+                    $Data = $addPname->getPermissionGroup($pId);
+                    $statusNow = $Data['STATUS'];
+                    $addPname->deactivatedGroup($pId, $statusNow);
+                    header("Location:".BASE_URL."/permissions");
+                    
+                
+            } else {
+                header("Location:".BASE_URL);
+            }
+            
+        }
+
         public function deactivated($pId) {
 
             $Data = array(
@@ -239,12 +268,12 @@
             );
             $statusNow = '';
             
-            $user = new UsersModels();
+            $user = new AdminsModels();
             $userInfo = $user->getUserLogged();
-            $company = new CompanyModels();
-            $company = $company->getCompany();
-            $Data['company_name'] = $company['NAME'];
-            $Data['user_name'] = $userInfo['EMAIL'];
+            $company = new EmpresaModels();
+            $company = $company->getEmpresa();
+            $Data['company_name'] = $company['emp_nome'];
+            $Data['user_name'] = $userInfo['email'];
             
             if ( $user->hasPermission("permissions")) {
                 
@@ -260,7 +289,6 @@
             }
             
         }
-
 
         
     }

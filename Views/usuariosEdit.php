@@ -86,8 +86,8 @@
             <div class="col-sm-3 prompt">Status do Usuário</div>
             <div class="col-sm-4">
                 <select name="status">
-                    <option value="1">Ativado</option>
-                    <option value="0">Desativado</option>
+                    <option value="1" <?php echo ($usuario['status']=='1') ? "selected='selected'" : '';?> >Ativado</option>
+                    <option value="0" <?php echo ($usuario['status']=='0') ? "selected='selected'" : '';?> >Desativado</option>
                 </select>
            </div>
         </div>

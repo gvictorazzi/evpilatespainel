@@ -69,8 +69,8 @@
             <div class="col-sm-2 prompt">Status do Módulo</div>
             <div class="col-sm-4">
                 <select name="pstatus">
-                    <option value="SIM" <?php echo ($permission['STATUS']=='SIM') ? 'selected="selected':"" ;?>>Ativado</option>
-                    <option value="NAO" <?php echo ($permission['STATUS']=='NAO') ? 'selected="selected':"" ;?> >Desativado</option>
+                    <option value="SIM" <?php echo ($permission['STATUS']=='SIM') ? 'selected="selected"':'' ;?>>Ativado</option>
+                    <option value="NAO" <?php echo ($permission['STATUS']=='NAO') ? 'selected="selected"':'' ;?> >Desativado</option>
                 </select>
            </div>
         </div>

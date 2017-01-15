@@ -35,7 +35,7 @@
                            <span class='caret'></span>
                         </a>
                         <ul class='dropdown-menu'>
-                            <li><a href='<?php echo BASE_URL."/professores";?>'><img src="<?php echo BASE_URL.'/assets/images/professores.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Professores</a></li>
+                            <li><a href='<?php echo BASE_URL."/professor";?>'><img src="<?php echo BASE_URL.'/assets/images/professores.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Professores</a></li>
                             <li><a href='<?php echo BASE_URL."/Modalidade";?>'><img src="<?php echo BASE_URL.'/assets/images/modalidade.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Modalidades</a></li>
                             <li><a href='<?php echo BASE_URL."/Eventos";?>'><img src="<?php echo BASE_URL.'/assets/images/eventos.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Eventos</a></li>
                             <li><a href='<?php echo BASE_URL."/Salas";?>'><img src="<?php echo BASE_URL.'/assets/images/sala.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Salas/Setores</a></li>

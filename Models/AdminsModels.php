@@ -105,6 +105,7 @@ class AdminsModels extends model {
     public function getUsuarioAdmin($nomeUsuario, $senha) {
         
         $usuario = 0;
+        $status = '1';
         $senhaInterna = md5($senha);
         $options = array(
 
@@ -121,19 +122,21 @@ class AdminsModels extends model {
             
             if ( $sql->rowCount() > 0 ) {
                 $sqlComando = $sql->fetch();
-                $usuario = $sqlComando['id'];
-
-                if (password_verify($senha, $sqlComando['password'])) {
-                    return $usuario;
-                }
-                else {
-                    return 0;
+                $status = $sqlComando['status'];
+                if ( $status == '1') {
+                    if (password_verify($senha, $sqlComando['password'])) {
+                        $usuario = $sqlComando['id'];
+                    }
+                } else {
+                    $usuario = -1;
                 }
             }
             
         } catch(PDOException $e ) {
             echo $e->getMessage();
         }
+        
+        return $usuario;
         
     }
     

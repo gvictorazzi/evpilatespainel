@@ -29,7 +29,11 @@
                 }
                 else {
                     //$admin->criarUsuarioAdmin($usuario, $senha);
-                    $dados['aviso'] = "Usuario e/ou Senha não conferem !!";
+                    if ( $dados['logado'] < 0 ) {
+                        $dados['aviso'] = "Usuário Bloqueado"; 
+                    } else {
+                        $dados['aviso'] = "Usuario e/ou Senha não conferem !!";
+                    }
                 }
                 
             }

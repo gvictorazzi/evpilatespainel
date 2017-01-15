@@ -48,7 +48,7 @@
     }
 
 </style>
-<h2>Cadastro de Permissões</h2>
+<h2>Módulo Permissões - Cadastro</h2>
 
 <div class="container">
     <form method="POST" class="form-group">

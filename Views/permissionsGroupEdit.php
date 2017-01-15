@@ -48,7 +48,7 @@
     }
 
 </style>
-<h2>Cadastro de Grupos Permissões</h2>
+<h2>Cadastro de Grupos Permissões - Alteração</h2>
 <hr/>
 <div class="container">
     <form method="POST">
@@ -66,9 +66,9 @@
             </div>
             <div class="col-sm-2 prompt">Status do Grupo</div>
             <div class="col-sm-2">
-                <select name="pstatus" value="<?php echo $groupInfo['STATUS']; ?>">
-                    <option value="SIM">Ativado</option>
-                    <option value="NAO">Desativado</option>
+                <select name="pstatus">
+                    <option value="SIM" <?php echo ($groupInfo['STATUS']=='SIM') ? "selected='selected'" :"" ;?> >Ativado</option>
+                    <option value="NAO" <?php echo ($groupInfo['STATUS']=='NAO') ? "selected='selected'" :"" ;?> >Desativado</option>
                 </select>
             </div>
         </div>
@@ -79,7 +79,7 @@
                 <tr>
                     <th>Módulo</th>
                     <th>Descrição do Módulo</th>
-                    <th>Status</th>
+                    <th>Ativo</th>
                     <th>Liberar</th>
                 </tr>
             </thead>
@@ -95,7 +95,7 @@
 
         <div class="gravar">
             <a href="<?php echo BASE_URL; ?>/permissions" class="btn btn-danger">Voltar   <img src='<?php echo BASE_URL."/assets/images/remover_botao.png" ;?>' style='width: 20px; height: 20px;'></a>
-            <button class='btn btn-success' type="submit" >Gravar  <img src='<?php echo BASE_URL."/assets/images/ok_botao.png" ;?>' style='width: 20px; height: 20px;'></button>
+            <button class='btn btn-success' type="submit" >Atualizar  <img src='<?php echo BASE_URL."/assets/images/ok_botao.png" ;?>' style='width: 20px; height: 20px;'></button>
         </div>
 
 

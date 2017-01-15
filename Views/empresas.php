@@ -19,7 +19,7 @@
 <br>
     <?php if ($editPermission): ?>
         <img src="<?php echo BASE_URL; ?>/assets/images/adicionar.png" width="40" height="30" />
-        <a href="<?php echo BASE_URL; ?>/parametros/empresaAdd" class="btn btn-default">Adicionar Empresa</a>
+        <a href="<?php echo BASE_URL; ?>/parametros" class="btn btn-default" disabled >Adicionar Empresa</a>
     <?php endif; ?>
 
 <hr/>

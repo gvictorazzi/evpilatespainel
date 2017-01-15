@@ -1,6 +1,5 @@
 <style>
     .container {
-    .container {
         width: 100%;
         float: left;
         border-bottom: 2px solid #000;
@@ -8,15 +7,41 @@
         padding: 5px;
     }
 
+    
     form {
         padding-top: 40px;
     }
 
-    input[type="text"] {
+    input[type="text"],
+    select {
         padding: 5px;
         border-radius: 2px;
         border: 1px solid black;
     }
+
+    .col-sm-2 {
+        font-weight: bold;
+    }
+
+    .row {
+        margin-top: 5px;
+    }
+    
+    .prompt {
+        line-height:30px; 
+        height: 30px;
+        background-color: #d5d5d5;
+        margin-left: 15px;        
+    }
+
+    .gravar {
+
+        float: right;
+        margin-top: 10px;
+        padding: 10px;
+
+    }
+
 
     label {
         font-size: 15px;
@@ -28,19 +53,33 @@
 <div class="container">
     <form method="POST">
 
-        <label for="pname">Nome do Grupo</label><br>
-        <input type="text" name="pname" size="40" maxlength="50" />
-        <br><br>
-        <label for="lname">Descrição do Grupo</label><br>
-        <input type="text" name="lname" size="80" maxlength="200" />
-        <br><br>
+        <div class="row">
+            <div class="col-sm-2 prompt">Nome do Grupo</div>
+            <div class="col-sm-4">
+                <input type="text" name="pname" size="40" maxlength="50" class="form-control" required autofocus />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 prompt">Descrição do Grupo</div>
+            <div class="col-sm-4">
+                <input type="text" name="lname" size="80" maxlength="200" class="form-control" required />
+            </div>
+            <div class="col-sm-2 prompt">Status do Grupo</div>
+            <div class="col-sm-2">
+                <select name="pstatus">
+                    <option value="SIM" selected="selected">Ativado</option>
+                    <option value="NAO">Desativado</option>
+                </select>
+            </div>
+        </div>
+        <hr/>
         <label>Acesso aos Módulos</label><br>
         <table class="table table-striped">
             <thead style="background-color: black; color: white;">
                 <tr>
                     <th>Módulo</th>
                     <th>Descrição do Módulo</th>
-                    <th>Status</th>
+                    <th>Ativo</th>
                     <th>Liberar</th>
                 </tr>
             </thead>
@@ -53,15 +92,10 @@
                 </tr>
             <?php endforeach; ?>
         </table>
-
-        <br><br>
-        <label for="pstatus">Status do Grupo</label>
-        <select name="pstatus">
-            <option value="SIM">Ativado</option>
-            <option value="NAO">Desativado</option>
-        </select>
-        <br><br>
-        <input type="submit" class="btn btn-default" value="Gravar"/>
+        <div class="gravar">
+            <a href="<?php echo BASE_URL; ?>/permissions" class="btn btn-danger">Voltar   <img src='<?php echo BASE_URL."/assets/images/remover_botao.png" ;?>' style='width: 20px; height: 20px;'></a>
+            <button class='btn btn-success' type="submit" >Gravar  <img src='<?php echo BASE_URL."/assets/images/ok_botao.png" ;?>' style='width: 20px; height: 20px;'></button>
+        </div>
 
 
     </form>

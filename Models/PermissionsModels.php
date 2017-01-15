@@ -175,6 +175,22 @@ class PermissionsModels extends model {
 
     }
     
+    public function getPermissionGroup($idPermission) {
+
+        $data = array();
+        
+        $sqlComando = "SELECT * FROM permissiongroups WHERE ID= :idParam";
+        $sql = $this->dbConexao->prepare($sqlComando);
+        $sql->bindValue(":idParam", $idPermission);
+        $sql->execute();
+
+        if ( $sql->rowCount() > 0 ) {
+            $data = $sql->Fetch();
+        }
+        
+        return $data;
+
+    }
 
     
 
@@ -225,6 +241,19 @@ class PermissionsModels extends model {
     
     
     
+    public function deactivatedGroup($pId, $statusNow) {
+
+        $recordStatus = (($statusNow === "SIM") ? "NAO" : "SIM");
+        
+        $sqlComando = "UPDATE permissiongroups SET STATUS= :sPermission WHERE ID= :param";
+        $sql = $this->dbConexao->prepare($sqlComando);
+        $sql->bindValue(":param", $pId);
+        $sql->bindValue(":sPermission", $recordStatus);
+        $sql->execute();
+
+    }
+
+    
     public function deactivated($pId, $statusNow) {
 
         $recordStatus = (($statusNow === "SIM") ? "NAO" : "SIM");
@@ -236,6 +265,6 @@ class PermissionsModels extends model {
         $sql->execute();
 
     }
-
+    
     
     }
