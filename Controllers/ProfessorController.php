@@ -76,6 +76,43 @@ class ProfessorController extends Controller {
 
     }
 
+    
+        
+        public function add() {
+
+            $Data = array(
+                "aviso" =>""
+            );
+            
+            $user = new AdminsModels();
+            $userInfo = $user->getUserLogged();
+            $company = new EmpresaModels();
+            $company = $company->getEmpresa();
+            $Data['company_name'] = $company['emp_nome'];
+            $Data['user_name'] = $userInfo['email'];
+            
+            if ( $user->hasPermission("PROFESSORES")) {
+                
+                if (isset($_POST['prof_nome']) && !empty($_POST['prof_nome'])) {
+                    
+                    $nomeusu = filter_input(INPUT_POST, 'nomeusu', FILTER_DEFAULT);
+
+                    $usuarios = new UsuariosModels();
+                    $dataGrava = array( $username, $email, $nomeusu, $senha, $grupodeacesso, $status);
+                    $usuarios->add($dataGrava);
+                    
+                    header("Location:".BASE_URL."/usuarios");
+                }
+                
+                $this->TemplateView("professoresAdd", $Data);
+                
+            } else {
+                header("Location:".BASE_URL);
+            }
+            
+        }
+    
+    
 }
 
 ?>

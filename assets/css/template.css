@@ -1,0 +1,269 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27/11/2016, 07:55:15
+    Author     : geraldo
+*/
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    font-family: Helvetia, Calibri, Arial, Verdana ;
+    background-color:#e8e8e8 ;
+}
+
+.leftmenu {
+    width: 200px;
+    background-color: #1f232a;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    
+}
+
+.logotipo {
+    width: 100px;
+    height: 100px;
+    background-color: #d4d4d4;
+    margin-top: 20px;
+    margin-left: 50px;
+    padding-left: 30px;
+}
+
+.company_name {
+    height: 100px;
+    line-height: 100px;
+    font-size: 18px;
+    color: #FFF;
+    text-align: center;
+    
+}
+
+.menuarea {
+    color: white;
+    
+}
+
+.menuarea ul {
+    border: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.menuarea li {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 30px;
+    background-size: 10px 10px;
+    background-repeat: no-repeat;
+    background-position: 10px 14px;
+}
+
+.menuarea li:hover {
+    background-color: #000;
+}
+.menuparam:hover {
+    background-color: #000;
+}
+
+.submenuparam a:hover {
+    background-color: #000;
+}
+
+
+.menuarea li a {
+    color: #FFF;
+    text-decoration: none;
+    display:block;
+}
+
+
+.menuarea li:nth-child(1) {
+    background-image:url("../images/home.png");
+}
+.menuarea li:nth-child(2) {
+    background-image:url("../images/key.png");
+}
+
+.menuarea li:nth-child(3) {
+    background-image:url("../images/users.png");
+}
+
+.menuarea li:nth-child(4) {
+    background-image:url("../images/client.png");
+}
+
+.menuarea li:nth-child(5) {
+    background-image:url("../images/add-contacts.png");
+}
+
+.menuarea li:nth-child(6) {
+    background-image:url("../images/estoque.png");
+}
+
+.menuarea li:nth-child(7) {
+    background-image:url("../images/sales.png");
+}
+
+.menuarea li:nth-child(8) {
+    background-image:url("../images/purchase.png");
+}
+
+.menuarea li:nth-child(9) {
+    background-image:url("../images/reports.png");
+}
+
+
+.top-right ul {
+    
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.top-right .botao {
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 20px;
+    line-height: 10px;
+}
+
+
+.containererp {
+    padding-left: 200px;
+}
+
+.top {
+    height: 40px;
+    background-color: #232830;
+    color: #fff;
+    font-size: 15px;
+}
+
+#clientsearch {
+    float: right;
+    width: 200px;
+    padding: 5px;
+    padding-left: 25px;
+    border-radius: 2px;
+    border: 1px solid #000;
+    background-image: url("../images/search.png");
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+}
+
+.searchResult {
+    width: 450px;
+    background-color: #fff;
+    position: absolute;
+    border: 1px solid #CCC;
+
+
+}
+
+.searchCombo {
+    width: 450px;
+    background-color: #fff;
+    position: absolute;
+    border: 1px solid #CCC;
+
+
+}
+
+
+#numcpf {
+
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position-x: 210px;
+    background-position-y: 5px;
+    background-image: none;
+
+}
+
+
+.si {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    cursor: pointer;
+    
+}
+
+.si a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+    
+}
+
+.si:hover {
+    background-color: #EEE;
+}
+
+
+.areahome {
+    background-color: #245269;
+    height: 100px;
+    margin-top: 10px;
+    padding: 10px;
+    
+}
+
+.areahome-totalvendas,
+.areahome-totalvendas-legenda,
+.areahome-totalvendas-comparativo,
+.areahome-totalmoney,
+.areahome-totalmoney-comparativo,
+.areahome-totalmoney-legenda,
+.areahome-totaldespesa,
+.areahome-totaldespesa-legenda,
+.areahome-totaldespesa-comparativo {
+    color: white;
+}
+
+.areahome-totalvendas,
+.areahome-totaldespesa,
+.areahome-totalmoney {
+    height: 60px;
+    font-size: 16px;
+}
+
+.areahome-totalvendas-legenda,
+.areahome-totaldespesa-legenda,
+.areahome-totalmoney-legenda {
+    font-size: 13px;
+    float: left;
+}
+
+.areahome-totalvendas-comparativo,
+.areahome-totaldespesa-comparativo,
+.areahome-totalmoney-comparativo {
+    float:right;
+}
+
+
+
+.areagrafico-legenda {
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid #ccc;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    padding-left: 10px;
+    background-color: white;
+}
+
+.areagrafico-grafico {
+    padding: 20px;
+    color: white;
+    
+}
