@@ -6,7 +6,7 @@ global $config;
 $config = array();
 
 define("BASE_URL", "http://localhost/evpilates/painel");
-define("BASE_IMAGENS", "http://localhost/evpilates/painel");
+define("BASE_IMAGENS", "http://localhost/evpilates/painel/assets/images");
 
 if ( ENVIRONMENT == "development") {
     // ambiente de desenvolvimento

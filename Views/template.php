@@ -26,7 +26,7 @@
                         </a>
                         <ul class='dropdown-menu'>
                             <li><a href='<?php echo BASE_URL."/parametros";?>'>Empresa</a></li>
-                            <li><a href='<?php echo BASE_URL."/permissions";?>'>Controle de Acesso</a></li>
+                            <li><a href='<?php echo BASE_URL."/permissions";?>'><img src="<?php echo BASE_URL.'/assets/images/key.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Controle de Acesso</a></li>
                             <li><a href='<?php echo BASE_URL."/usuarios";?>'><img src="<?php echo BASE_URL.'/assets/images/usuarios.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Usuários Sistema</a></li>
                         </ul>
                     </li>

@@ -102,7 +102,11 @@ class ProfessorController extends Controller {
                     $usuarios->add($dataGrava);
                     
                     header("Location:".BASE_URL."/usuarios");
+                    
                 }
+                
+                $estados = new CitiesModels();
+                $Data['estados'] = $estados->citiesList(0, FALSE);
                 
                 $this->TemplateView("professoresAdd", $Data);
                 

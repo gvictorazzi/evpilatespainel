@@ -7,7 +7,7 @@ $( function() {
     $('#prof_cep').bind("blur", function(e){
         
        e.preventDefault();
-       
+
 //       var txt = $(this).serialize();
         var txt = document.getElementById("prof_cep").value;
 
@@ -41,6 +41,31 @@ $( function() {
         }
         
     });
+    
+    $("#fotomodalidade").on('change', function () {
+ 
+        if (typeof (FileReader) != "undefined") {
+
+            var image_holder = $("#foto");
+            image_holder.empty();
+
+            var reader = new FileReader();
+            console.log($(this)[0].files);
+            reader.onload = function (e) {
+                $("<img />", {
+                    "src": e.target.result,
+                    "class": "thumb-image",
+                    "width": "200",
+                    "height": "200"
+                }).appendTo(image_holder);
+            };
+            image_holder.show();
+            reader.readAsDataURL($(this)[0].files[0]);
+        } else{
+            alert("Este navegador nao suporta FileReader.");
+        }
+    });
+
 
     
 });
@@ -54,3 +79,30 @@ function avisaWait() {
 
     
 }
+
+
+function clientsByState(obj) {
+
+    var estado = $(obj).val();
+
+    $.ajax ({
+
+        url:BASE_URL+"/ajax/countiesListByState",
+        type:'GET',
+        data:{estado:estado},
+        dataType:'json',
+        success: function(json) {
+            var html = '';
+            for ( var i in json.counties) {
+                html += "<option value='"+json.counties[i].MUN_CODIGO+"'>"+json.counties[i].MUN_NOME+"</options>";
+            }
+            $('select[name=prof_cidade]').html(html);          
+        },
+        error: function(json) {
+            console.log(json);
+        }
+    });
+}    
+
+
+

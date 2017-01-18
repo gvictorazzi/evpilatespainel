@@ -44,6 +44,11 @@
         font-size: 15px;
     }
 
+    textarea {
+        min-height: 300px;
+    }
+    
+    
 </style>
 <h2>Cadastro de Professores - Adicionar</h2>
 
@@ -51,8 +56,9 @@
     <form method="POST" class="form-group" autocomplete="off" name="professores">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#dados" data-toggle="tab">Dados/Endereço</a></li>
-            <li><a href="#biografia" data-toggle="tab">Foto/Biografia</a></li>
+            <li><a href="#biografia" data-toggle="tab">Biografia</a></li>
             <li><a href="#modalidade" data-toggle="tab">Modalidade</a></li>
+            <li><a href="#fotografia" data-toggle="tab">Fotografia</a></li>
         </ul>
         <div class="tab-content" style="margin-top: 15px;">
             <div id="dados" class="tab-pane active in">
@@ -120,18 +126,35 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-sm-2 prompt">Estado</div>
+                    <div class='col-sm-2'>
+                        <select name="estado" onchange="clientsByState(this)">
+                            <?php foreach ($estados as $item) :?>
+                            <option value="<?php echo $item['UF_CODIGO'] ;?>"><?php echo $item['UF_NOME']."-".$item['SIGLA_UF'] ;?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     <div class="col-sm-2 prompt">Cidade</div>
                     <div class='col-sm-4'>
-                        <input type="text" name="prof_cidade" id="prof_cep" size='10' maxlength="10" class="form-control" />
-                    </div>
-                    <div class='col-sm-1'>
-                        <input type="text" name="prof_uf" id="prof_cep" size='6' maxlength="2" class="form-control" placeholder="uf..." />
+                        <select name="prof_cidade">
+                            
+                        </select>
                     </div>
                 </div>
             </div>
             <div id="biografia" class="tab-pane">
+                <div class="row">
+                    <div class="col-sm-2 prompt">Biografia</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10">
+                        <textarea name="biografia" class="form-control"></textarea>
+                    </div>
+                </div>
             </div>
             <div id="modalidade" class="tab-pane">
+            </div>
+            <div id="fotografia" class="tab-pane">
             </div>
         </div>
         <div class="gravar">

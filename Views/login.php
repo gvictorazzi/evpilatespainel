@@ -15,7 +15,7 @@ and open the template in the editor.
         
         <style type="text/css">
             body {
-                background-image: url('<?php echo BASE_IMAGENS."/assets/images/iconeevpilates_back.png" ;?>');
+                background-image: url('<?php echo BASE_IMAGENS."/iconeevpilates_back.png" ;?>');
             }
             
             input[type='text'],
@@ -29,7 +29,7 @@ and open the template in the editor.
     <body>
         <div class="col-sm-4"></div>
         <div class="container col-sm-3 alert" style="background-color: #F9F9F9; margin-top: 10px;" >
-            <h1 align="center"><img  src="<?php echo BASE_IMAGENS.'/assets/images/iconeevpilates.png' ;?>" width="80px" height="80px;" /></h1>
+            <h1 align="center"><img  src="<?php echo BASE_IMAGENS.'/iconeevpilates.png' ;?>" width="80px" height="80px;" /></h1>
    
             <div class="alert-danger"><?php if (!empty($aviso)) { echo $aviso; }; ?></div>
             <form method="POST" autocomplete="off">
