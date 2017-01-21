@@ -28,6 +28,7 @@
                             <li><a href='<?php echo BASE_URL."/parametros";?>'>Empresa</a></li>
                             <li><a href='<?php echo BASE_URL."/permissions";?>'><img src="<?php echo BASE_URL.'/assets/images/key.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Controle de Acesso</a></li>
                             <li><a href='<?php echo BASE_URL."/usuarios";?>'><img src="<?php echo BASE_URL.'/assets/images/usuarios.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Usuários Sistema</a></li>
+                            <li><a href='<?php echo BASE_URL."/outrocontatos";?>'><img src="<?php echo BASE_URL.'/assets/images/contatos.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Outros Contatos</a></li>
                         </ul>
                     </li>
                     <li class='dropdown'>
@@ -42,7 +43,16 @@
                             <li><a href='<?php echo BASE_URL."/Salas";?>'><img src="<?php echo BASE_URL.'/assets/images/sala.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Salas/Setores</a></li>
                         </ul>
                     </li>
-                    <li><a href='<?php echo BASE_URL."/alunos";?>'>Alunos</a></li>
+                    <li class='dropdown'>
+                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                            <?php echo 'Alunos';?>
+                           <span class='caret'></span>
+                        </a>
+                        <ul class='dropdown-menu'>
+                            <li><a href='<?php echo BASE_URL."/alunos";?>'><img src="<?php echo BASE_URL.'/assets/images/alunos.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Ficha Cadastral</a></li>
+                            <li><a href='<?php echo BASE_URL."/monitora";?>'><img src="<?php echo BASE_URL.'/assets/images/monitora.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Monitoramento</a></li>
+                        </ul>
+                    </li>
                     <li><a href='<?php echo BASE_URL."/agendas";?>'>Agendas</a></li>
                     <li><a href='<?php echo BASE_URL."/tabelas";?>'>Relatórios</a></li>
                     <li class='dropdown'>

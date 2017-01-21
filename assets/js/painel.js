@@ -2,6 +2,7 @@ $( function() {
     
    
     $('#numcpf').mask("000.000.000-00");
+    $('#numrg').mask("000.000.000-0", {reverse:true});
     $('#prof_cep').mask("00000-000");
 
     $('#prof_cep').bind("blur", function(e){
@@ -50,7 +51,7 @@ $( function() {
             image_holder.empty();
 
             var reader = new FileReader();
-            console.log($(this)[0].files);
+
             reader.onload = function (e) {
                 $("<img />", {
                     "src": e.target.result,
@@ -66,6 +67,30 @@ $( function() {
         }
     });
 
+    
+    $("#foto_prof").on('change', function () {
+ 
+        if (typeof (FileReader) != "undefined") {
+
+            var image_holder = $("#fotoprof");
+            image_holder.empty();
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("<img />", {
+                    "src": e.target.result,
+                    "class": "thumb-image",
+                    "width": "272",
+                    "height": "340"
+                }).appendTo(image_holder);
+            };
+            image_holder.show();
+            reader.readAsDataURL($(this)[0].files[0]);
+        } else{
+            alert("Este navegador nao suporta FileReader.");
+        }
+    });
 
     
 });
@@ -103,6 +128,3 @@ function clientsByState(obj) {
         }
     });
 }    
-
-
-
