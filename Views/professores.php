@@ -27,7 +27,7 @@
 <div class="container-fluid col-sm-12">
 
     <div id="viaturas" >
-        <img class="adicionar" src="<?php echo BASE_URL; ?>/assets/images/adicionar.png" alt="Ícone da Operação Adicionar"/>
+        <img class="adicionar" src="<?php echo BASE_URL; ?>/assets/images/adicionar.png" alt="Ícone da Operação Adicionar" style='width: 30px; height: 30px;'/>
         <a href="<?php echo BASE_URL; ?>/professor/add" class="btn btn-default">Adicionar Professores</a>
         <hr/>
         <table class="table table-bordered table-striped table-hover table-responsive table-condensed">

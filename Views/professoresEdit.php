@@ -55,7 +55,7 @@
     
     
 </style>
-<h2>Cadastro de Professores - Adicionar</h2>
+<h2>Cadastro de Professores - Editar</h2>
 
 <div class="container">
     <form method="POST" class="form-group" autocomplete="off" name="professores" enctype="multipart/form-data">
@@ -73,63 +73,63 @@
                 <div class="row">
                     <div class="col-sm-2 prompt">Nome do Professor</div>
                     <div class="col-sm-4">
-                        <input type="text" name="prof_nome" size="40" maxlength="50" class="form-control" required autofocus />
+                        <input type="text" name="prof_nome" onfocus="clientsByStateEdit(<?php echo $professor['idCity'] ;?>, <?php echo $professor['prof_cidade'] ;?>)" value="<?php echo $professor['prof_nome'] ;?>" maxlength="50" class="form-control" required autofocus />
                     </div>
                     <div class="col-sm-1 prompt">Apelido</div>
                     <div class="col-sm-2">
-                        <input type="text" name="prof_apelido" size="20" maxlength="20" class="form-control" required />
+                        <input type="text" name="prof_apelido" value="<?php echo $professor['prof_apelido'] ;?>" maxlength="20" class="form-control" required />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-2 prompt">E-mail</div>
                     <div class="col-sm-4">
-                        <input type="email" name="prof_email" size="100" maxlength="100" class="form-control" required />
+                        <input type="email" name="prof_email" value="<?php echo $professor['prof_email'] ;?>" maxlength="100" class="form-control" required />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-2 prompt">Telefone Fixo</div>
                     <div class="col-sm-3">
-                        <input type="text" name="prof_tel" size="20" maxlength="20" class="form-control" />
+                        <input type="text" name="prof_tel" value="<?php echo $professor['prof_tel'] ;?>" maxlength="20" class="form-control" />
                     </div>
                     <div class="col-sm-1"></div>
                     <div class="col-sm-1 prompt">Celular</div>
                     <div class="col-sm-3">
-                        <input type="text" name="prof_cel" size="20" maxlength="20" class="form-control" />
+                        <input type="text" name="prof_cel" value="<?php echo $professor['prof_cel'] ;?>" maxlength="20" class="form-control" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-2 prompt">CPF</div>
                     <div class="col-sm-3">
-                        <input class='docpri' id="numcpf" type="text" name="prof_cpf" size="30" maxlength="14" onblur="verificaCpf(this)" /><br/>
+                        <input class='docpri' id="numcpf" type="text" name="prof_cpf" value="<?php echo $professor['prof_cpf'] ;?>" maxlength="14" onblur="verificaCpf(this)" /><br/>
                     </div>
                     <div class="col-sm-1"></div>
                     <div class="col-sm-1 prompt">RG</div>
                     <div class="col-sm-3">
-                        <input type="text" id="numrg" name="prof_rg" size="20" maxlength="20" class="form-control" />
+                        <input type="text" id="numrg" name="prof_rg" value="<?php echo $professor['prof_rg'] ;?>" maxlength="20" class="form-control" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-2 prompt">Cep</div>
                     <div class="col-sm-2">
-                        <input type="text" name="prof_cep" id="prof_cep" size='10' maxlength="8" class="form-control" />
+                        <input type="text" name="prof_cep" id="prof_cep" value="<?php echo $professor['prof_cep'] ;?>" maxlength="8" class="form-control" />
                     </div>
                 </div>
                 <div class='row'>
                     <div class="col-sm-2 prompt">Logradouro</div>
                     <div class="col-sm-5">
-                        <input type="text" name="prof_end" id="prof_cep" size='100' maxlength="100" class="form-control" placeholder="endereço..." />
+                        <input type="text" name="prof_end" id="prof_cep" value="<?php echo $professor['prof_end'] ;?>" maxlength="100" class="form-control" placeholder="endereço..." />
                     </div>
                     <div class='col-sm-1'>
-                        <input type="text" name="prof_num" id="prof_cep" size='10' maxlength="10" class="form-control" placeholder="número..." />
+                        <input type="text" name="prof_num" id="prof_cep" value="<?php echo $professor['prof_num'] ;?>" maxlength="10" class="form-control" placeholder="número..." />
                     </div>
                     <div class='col-sm-2'>
-                        <input type="text" name="prof_compl" id="prof_cep" size='20' maxlength="20" class="form-control" placeholder="complemento..." />
+                        <input type="text" name="prof_compl" id="prof_cep" value="<?php echo $professor['prof_compl'] ;?>" maxlength="20" class="form-control" placeholder="complemento..." />
                     </div>
                 </div>
                 <div class='row'>
                     <div class="col-sm-2 prompt">Bairro</div>
                     <div class="col-sm-4">
-                        <input type="text" name="prof_bairro" id="prof_cep" size='50' maxlength="50" class="form-control" />
+                        <input type="text" name="prof_bairro" id="prof_cep" value="<?php echo $professor['prof_bairro'] ;?>" maxlength="50" class="form-control" />
                     </div>
                 </div>
                 <div class="row">
@@ -137,7 +137,7 @@
                     <div class='col-sm-2'>
                         <select name="prof_uf" onchange="clientsByState(this)">
                             <?php foreach ($estados as $item) :?>
-                            <option value="<?php echo $item['UF_CODIGO'] ;?>"><?php echo $item['UF_NOME']."-".$item['SIGLA_UF'] ;?></option>
+                            <option value="<?php echo $item['UF_CODIGO'] ;?>" <?php echo ($professor['idCity'] == $item['UF_CODIGO']) ? "selected='selected'" :"" ;?> ><?php echo $item['UF_NOME']."-".$item['SIGLA_UF'] ;?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -152,8 +152,8 @@
                     <div class="col-sm-2 prompt">Status</div>
                     <div class='col-sm-2'>
                         <select name="prof_status" >
-                            <option value="1" selected="selected">Ativo</option>
-                            <option value="0">Não Ativo</option>
+                            <option value="1" <?php echo ($professor['prof_status']=='1') ? 'selected="selected"':'' ;?> >Ativo</option>
+                            <option value="0" <?php echo ($professor['prof_status']=='0') ? 'selected="selected"':'' ;?> >Não Ativo</option>
                         </select>
                     </div>
                 </div>
@@ -164,7 +164,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-10">
-                        <textarea name="biografia" class="form-control" required ></textarea>
+                        <textarea name="biografia" class="form-control" required ><?php echo $professor['prof_bio'] ;?></textarea>
                     </div>
                 </div>
             </div>
@@ -187,7 +187,7 @@
                         <td><?php echo $item['modal_letraid'] ?></td>
                         <td><img src="<?php echo BASE_IMAGENS.'/galeria/'.$item["modal_foto"] ;?>" width="50" height="50" /></td>
                         <td><?php echo ($item['modal_status']) == '1' ? "SIM" : "NÃO" ;?></td>
-                        <td><input type="checkbox" name="profmodalidade[]" value="<?php echo $item['id'] ?>" /></td>
+                        <td><input type="checkbox" name="profmodalidade[]" value="<?php echo $item['id'] ?>" <?php echo (in_array($item['id'], $modalp)) ?  "checked='checked'":"" ;?> /></td>
                     </tr>
                     <?php endforeach; ?>
                 </table>
@@ -197,19 +197,19 @@
                 <div class="row">
                     <div class="col-sm-2 prompt">Data Nascimento</div>
                     <div class='col-sm-2'>
-                        <input type='date' name='prof_dtnasc' class='form-control' />
+                        <input type='date' name='prof_dtnasc' value="<?php echo $professor['prof_dtnasc'] ;?>" class='form-control' />
                     </div>
                     <div class="col-sm-2 prompt">Idade</div>
                     <div class='col-sm-2'>
-                        <input type='number' name='prof_idade' class='form-control' />
+                        <input type='number' name='prof_idade' value="<?php echo $professor['prof_idade'] ;?>" class='form-control' />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-2 prompt">Gênero</div>
                     <div class='col-sm-2'>
                         <select name='prof_genero' class='form-control'>
-                            <option value='Feminino'>Feminino</option>
-                            <option value='Masculino'>Masculino</option>
+                            <option value='Feminino' <?php echo ($professor['prof_genero'] == "Feminino") ? "selected='selected'" :"" ;?>>Feminino</option>
+                            <option value='Masculino' <?php echo ($professor['prof_genero'] == "Masculino") ? "selected='selected'" :"" ;?>>Masculino</option>
                         </select>
                     </div>
                 </div>

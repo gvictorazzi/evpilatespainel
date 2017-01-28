@@ -91,12 +91,26 @@ class PermissionsModels extends model {
 
         $sqlComando = "INSERT INTO permissionparams SET NAME= :param, LONGNAME= :lname, STATUS= :spermission";
         $sql = $this->dbConexao->prepare($sqlComando);
-        $sql->bindValue(":param", $pname);
-        $sql->bindValue(":lname", $lname);
-        $sql->bindValue(":spermission", $pstatus);
-        $sql->execute();
         
-        $lastId = $this->dbConexao->lastInsertId();
+        try {
+            
+            $sql->bindValue(":param", $pname);
+            $sql->bindValue(":lname", $lname);
+            $sql->bindValue(":spermission", $pstatus);
+
+            $this->dbConexao->beginTransaction();
+
+            $sql->execute();
+            $lastId = $this->dbConexao->lastInsertId();
+
+            $this->dbConexao->commit();
+            
+            
+        } catch(PDOException $e) {
+            $this->dbConexao->rollBack();
+            echo $e->getMessage();
+        }
+        
 
         return $lastId;
 

@@ -48,7 +48,7 @@ class CountiesModels extends model {
         
         $data = array();
         
-        $sqlComando = "SELECT MUN_CODIGO, MUN_NOME FROM counties "
+        $sqlComando = "SELECT * FROM counties "
                 . "WHERE UF_CODIGO= :idState "
                 . "ORDER BY counties.MUN_NOME ASC";
 

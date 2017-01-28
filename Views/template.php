@@ -28,7 +28,7 @@
                             <li><a href='<?php echo BASE_URL."/parametros";?>'>Empresa</a></li>
                             <li><a href='<?php echo BASE_URL."/permissions";?>'><img src="<?php echo BASE_URL.'/assets/images/key.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Controle de Acesso</a></li>
                             <li><a href='<?php echo BASE_URL."/usuarios";?>'><img src="<?php echo BASE_URL.'/assets/images/usuarios.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Usuários Sistema</a></li>
-                            <li><a href='<?php echo BASE_URL."/outrocontatos";?>'><img src="<?php echo BASE_URL.'/assets/images/contatos.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Outros Contatos</a></li>
+                            <li><a href='<?php echo BASE_URL."/contatos";?>'><img src="<?php echo BASE_URL.'/assets/images/contatos.png' ;?>" width="20" height="20" style="margin-right: 20px;" />Outros Contatos</a></li>
                         </ul>
                     </li>
                     <li class='dropdown'>

@@ -128,6 +128,17 @@ class ajaxController extends Controller {
         echo json_encode($countiesList); // retorno para o Ajax
 
     }
+
+    public function contatosList() {
+        
+        $contatos= array();
+        $contato = new ContatosModels();
+        $contatos['contato'] = $contato->contatosList();
+        
+        echo json_encode($contatos);
+        
+    }
+
     
     
 }

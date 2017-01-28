@@ -112,17 +112,21 @@ class ProfessorController extends Controller {
                     $prof_status = filter_input(INPUT_POST, 'prof_status', FILTER_DEFAULT);
                     $biografia = filter_input(INPUT_POST, 'biografia', FILTER_DEFAULT);
                     $foto_prof = filter_input(INPUT_POST, 'prof_foto', FILTER_DEFAULT);
-                    $prof_dtnasc = filter_input(INPUT_POST, 'prof_dtnasc ', FILTER_DEFAULT);
-                    $foto_idade = filter_input(INPUT_POST, 'prof_idade', FILTER_DEFAULT);
-                    $foto_genero = filter_input(INPUT_POST, 'prof_genero', FILTER_DEFAULT);
+                    $prof_dtnasc = filter_input(INPUT_POST, 'prof_dtnasc', FILTER_DEFAULT);
+                    $prof_idade = filter_input(INPUT_POST, 'prof_idade', FILTER_DEFAULT);
+                    $prof_genero = filter_input(INPUT_POST, 'prof_genero', FILTER_DEFAULT);
                     
                     $modalidade = $_POST['profmodalidade']; // matriz com as especializações do professor
-
+                    $contatosprof = $_POST['tipocontato'];
+                    $contatoqual = $_POST['nomecontato'];
+                    
                     $professor = new ProfessorModels();
                     $dataGrava = array( $prof_nome, $prof_apelido, $prof_email, $prof_tel, $prof_cel,
                                         $prof_cpf, $prof_rg, $prof_cep, $prof_end, $prof_num, $prof_compl,
-                                        $prof_bairro, $prof_uf, $prof_cidade, $prof_status, $biografia, $foto_prof);
-                    $professor->add($dataGrava, $modalidade);
+                                        $prof_bairro, $prof_uf, $prof_cidade, $prof_status, $biografia, $foto_prof,
+                                        $prof_dtnasc, $prof_idade, $prof_genero);
+                    
+                    $professor->add($dataGrava, $modalidade, $contatosprof, $contatoqual);
                     
                     header("Location:".BASE_URL."/professor");
                     
@@ -140,7 +144,79 @@ class ProfessorController extends Controller {
             }
             
         }
-    
+
+        
+        
+        public function edit($idProfessor) {
+
+            $Data = array(
+                "aviso" =>""
+            );
+            
+            $user = new AdminsModels();
+            $userInfo = $user->getUserLogged();
+            $company = new EmpresaModels();
+            $company = $company->getEmpresa();
+            $Data['company_name'] = $company['emp_nome'];
+            $Data['user_name'] = $userInfo['email'];
+            
+            if ( $user->hasPermission("PROFESSORES")) {
+                
+                if (isset($_POST['prof_nome']) && !empty($_POST['prof_nome'])) {
+                    
+                    $prof_nome = filter_input(INPUT_POST, 'prof_nome', FILTER_DEFAULT);
+                    $prof_apelido = filter_input(INPUT_POST, 'prof_apelido', FILTER_DEFAULT);
+                    $prof_email = filter_input(INPUT_POST, 'prof_email', FILTER_DEFAULT);
+                    $prof_tel = filter_input(INPUT_POST, 'prof_tel', FILTER_DEFAULT);
+                    $prof_cel = filter_input(INPUT_POST, 'prof_cel', FILTER_DEFAULT);
+                    $prof_cpf = filter_input(INPUT_POST, 'prof_cpf', FILTER_DEFAULT);
+                    $prof_rg = filter_input(INPUT_POST, 'prof_rg', FILTER_DEFAULT);
+                    $prof_end = filter_input(INPUT_POST, 'prof_end', FILTER_DEFAULT);
+                    $prof_num = filter_input(INPUT_POST, 'prof_num', FILTER_DEFAULT);
+                    $prof_compl = filter_input(INPUT_POST, 'prof_compl', FILTER_DEFAULT);
+                    $prof_bairro = filter_input(INPUT_POST, 'prof_bairro', FILTER_DEFAULT);
+                    $prof_cidade = filter_input(INPUT_POST, 'prof_cidade', FILTER_DEFAULT);
+                    $prof_uf = filter_input(INPUT_POST, 'prof_uf', FILTER_DEFAULT);
+                    $prof_cep = filter_input(INPUT_POST, 'prof_cep', FILTER_DEFAULT);
+                    $prof_status = filter_input(INPUT_POST, 'prof_status', FILTER_DEFAULT);
+                    $biografia = filter_input(INPUT_POST, 'biografia', FILTER_DEFAULT);
+                    $foto_prof = filter_input(INPUT_POST, 'prof_foto', FILTER_DEFAULT);
+                    $prof_dtnasc = filter_input(INPUT_POST, 'prof_dtnasc', FILTER_DEFAULT);
+                    $prof_idade = filter_input(INPUT_POST, 'prof_idade', FILTER_DEFAULT);
+                    $prof_genero = filter_input(INPUT_POST, 'prof_genero', FILTER_DEFAULT);
+                    
+                    $modalidade = $_POST['profmodalidade']; // matriz com as especializações do professor
+                    $contatosprof = $_POST['tipocontato'];
+                    $contatoqual = $_POST['nomecontato'];
+                    
+                    $professor = new ProfessorModels();
+                    $dataGrava = array( $prof_nome, $prof_apelido, $prof_email, $prof_tel, $prof_cel,
+                                        $prof_cpf, $prof_rg, $prof_cep, $prof_end, $prof_num, $prof_compl,
+                                        $prof_bairro, $prof_uf, $prof_cidade, $prof_status, $biografia, $foto_prof,
+                                        $prof_dtnasc, $prof_idade, $prof_genero);
+                    
+                    $professor->update($idProfessor,$dataGrava, $modalidade, $contatosprof, $contatoqual);
+                    
+                    header("Location:".BASE_URL."/professor");
+                    
+                }
+                
+                $estados = new CitiesModels();
+                $Data['estados'] = $estados->citiesList(0, FALSE);
+                $modal = new ModalidadeModels();
+                $Data['modal'] = $modal->getAllModalidades();
+                $prof = new ProfessorModels();
+                $Data['professor'] = $prof->getProfessorById($idProfessor);
+                $Data['modalp'] = explode(",", $Data['professor']['prof_modalidade']);
+                $this->TemplateView("professoresEdit", $Data);
+                
+            } else {
+                header("Location:".BASE_URL);
+            }
+            
+        }
+        
+        
     
 }
 

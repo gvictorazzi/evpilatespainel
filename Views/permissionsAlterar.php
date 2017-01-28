@@ -52,7 +52,7 @@
 <hr/>
 <div class="container">
 
-    <form method="POST" class="form-group">
+    <form method="POST" class="form-group" autocomplete="off">
         <div class="row">
             <div class="col-sm-2 prompt">Nome da Permissão</div>
             <div class="col-sm-4">

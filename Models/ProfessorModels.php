@@ -52,20 +52,52 @@ class ProfessorModels extends model {
     }
 
     
-    public function add($dataGrava, $modalidades) {
+    public function getProfessorById($idProfessor) {
+        $Data = array();
+        
+        $sqlComando = "SELECT *, professores.id AS idProfessor, city.UF_CODIGO AS idCity FROM professores "
+                . "INNER JOIN counties "
+                . "INNER JOIN CITY "
+                . "ON professores.prof_cidade = counties.ID AND counties.UF_CODIGO = city.UF_CODIGO "
+                . " WHERE professores.id= :idProfessor";
+
+
+        $sql = $this->dbConexao->prepare($sqlComando);
+        
+        try {
+            $sql->bindValue(":idProfessor", $idProfessor);
+            $sql->execute();
+            if ( $sql->rowCount() > 0 ) {
+                $Data = $sql->fetch();
+            }
+            
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+        
+        return $Data;
+    }
+    
+    public function add($dataGrava, $modalidades, $contatos, $qualcontato) {
         
         $modalidadeList = implode(",", $modalidades);
         $modalidadeList = addslashes($modalidadeList);
-        $numcpf = limparCampo($dataGrava[5]);
-        $numrg = limparCampo($dataGrava[6]);
+        $numcpf = $this->limparCampo($dataGrava[5]);
+        $numrg = $this->limparCampo($dataGrava[6]);
+        $numcep = $this->limparCampo($dataGrava[7]);
         
         $extensao = ".png";
-       
-        if (( $_FILES['foto_prof']['type'] == 'image/jpeg' ) || ($_FILES['foto_prof']['type'] == 'image/jpg')) {
-            $extensao = '.jpg';
-         }
-        $nomeArquivo = md5(time().rand(0,999)).$extensao;
-        move_uploaded_file($_FILES['foto_prof']['tmp_name'], 'assets/images/professores/'.$nomeArquivo);
+
+        if ( isset($_FILES['foto_prof']['tmp_name'])) {
+            if (( $_FILES['foto_prof']['type'] == 'image/jpeg' ) || ($_FILES['foto_prof']['type'] == 'image/jpg')) {
+                $extensao = '.jpg';
+             }
+            $nomeArquivo = md5(time().rand(0,999)).$extensao;
+            move_uploaded_file($_FILES['foto_prof']['tmp_name'], 'assets/images/professores/'.$nomeArquivo);
+            
+        } else {
+            $nomeArquivo = '';
+        }
         
         
         $sqlComando = "INSERT INTO professores SET "
@@ -81,12 +113,14 @@ class ProfessorModels extends model {
                 . "prof_compl= :prof_compl,"
                 . "prof_bairro= :prof_bairro,"
                 . "prof_cidade= :prof_cidade,"
-                . "prof_uf= :prof_uf,"
                 . "prof_cep= :prof_cep,"
                 . "prof_foto= :prof_foto,"
                 . "prof_modalidade= :prof_modalidade,"
                 . "prof_bio= :prof_bio,"
-                . "prof_status= :prof_status";
+                . "prof_status= :prof_status,"
+                . "prof_dtnasc= :prof_dtnasc,"
+                . "prof_idade= :prof_idade,"
+                . "prof_genero= :prof_genero";
         
         $sql = $this->dbConexao->prepare($sqlComando);
         
@@ -103,16 +137,22 @@ class ProfessorModels extends model {
             $sql->BindValue(":prof_compl", $dataGrava[10]);
             $sql->BindValue(":prof_bairro", $dataGrava[11]);
             $sql->BindValue(":prof_cidade", $dataGrava[13]);
-            $sql->BindValue(":prof_uf", $dataGrava[12]);
-            $sql->BindValue(":prof_cep", $dataGrava[7]);
+            $sql->BindValue(":prof_cep", $numcep);
             $sql->BindValue(":prof_foto", $nomeArquivo);
             $sql->bindValue(":prof_modalidade", $modalidadeList);
             $sql->BindValue(":prof_bio", $dataGrava[15]);
             $sql->BindValue(":prof_status", $dataGrava[14]);
+            $sql->BindValue(":prof_dtnasc", $dataGrava[17]);
+            $sql->BindValue(":prof_idade", $dataGrava[18]);
+            $sql->BindValue(":prof_genero", $dataGrava[19]);
             
             $this->dbConexao->beginTransaction();
             $sql->execute();
+            $chaveProfessor = $this->dbConexao->lastInsertId();            
+            
             $this->dbConexao->commit();
+            
+            $this->saveContatos($chaveProfessor, $contatos, $qualcontato);
             
         } catch(PDOException $e) {
             $this->dbConexao->rollBack();
@@ -123,12 +163,47 @@ class ProfessorModels extends model {
         
     }
     
-    function limparCampo($campo) {
-        $result = '';
+    
+    function saveContatos($chave, $contatos, $qualcontato ) {
         
-        $result = str_replace(".", "", $campo);
-        $result = str_replace("/", "", $campo);
-        $result = str_replace("-", "", $campo);
+        $status = '1'; // por padrão o contato está ativo
+        
+        $sqlComando = "INSERT INTO contatosprofessor SET "
+                . "id_professor= :chave,"
+                . "id_contato= :contato,"
+                . "contato_des= :contato_des,"
+                . "tp_status= :status";
+        
+        $this->dbConexao->beginTransaction();
+        $sql = $this->dbConexao->prepare($sqlComando);
+        
+        try {
+            foreach ($contatos as $idContato => $item) {
+                
+                $sql->bindValue(":chave", $chave);
+                $sql->bindValue(":contato", $item);
+                $sql->bindValue(":contato_des", $qualcontato[$idContato]);
+                $sql->bindValue(":status", $status);
+                
+                $sql->execute();
+            }
+            $this->dbConexao->commit();
+            
+        } catch(PDOException $e) {
+            $this->dbConexao->rollBack();
+            echo $e->getMessage();
+        }
+        
+    }
+    
+    
+    function limparCampo($campo) {
+        $result = $campo;
+
+        $result = str_replace(".", "", $result);
+        $result = str_replace("/", "", $result);
+        $result = str_replace("-", "", $result);
+        
         
         return $result;
         
